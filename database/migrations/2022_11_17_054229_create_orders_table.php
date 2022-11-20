@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->tinyInteger('approved')->default(0);
+            $table->integer('approved')->default(0);
             $table->foreignId('hotel_id')->nullable()->constrained('hotels')->onDelete('cascade');
             $table->timestamps();
         });

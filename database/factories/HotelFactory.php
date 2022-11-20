@@ -19,7 +19,7 @@ class HotelFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'price' => $this->faker->randomDigit(),
-            'image' => $this->faker->image(),
+            'image' => $this->faker->paragraph(1, false),
             'travel_time' => $this->faker->time('H:i'),
         ];
     }

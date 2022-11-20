@@ -10,14 +10,15 @@ class Order extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'aproved',
+        'approved',
         'hotel_id',
+        'user_id',
     ];
     protected $hidden = [
         'created_at',
         'updated_at',
     ];
     public function hotel(){
-        return $this->belongsTo(hotel::class);
+        return $this->belongsTo(Hotel::class);
     }
 }

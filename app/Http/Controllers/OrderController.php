@@ -26,6 +26,16 @@ class OrderController extends Controller
     // {
     //         return new HotelCollection(Hotel::all());
     // }
+
+
+    public function destroy($id)
+    {
+        return Order::destroy($id) === 0
+            ? response(["status" => "failure"], 404)
+            : response(["status" => "success"], 200);
+    }
+
+
     public function store(Request $request)
     {
         try {
@@ -39,20 +49,52 @@ class OrderController extends Controller
         }
         return Order::create($request->all());
     }
-    public function update(Request $request, $id)
-    {
-        $Order = Order::find($id);
-        if ($Order->update(['approved', 1]))
-            return response()->json([
-                'success' => true,
-                'message' => 'Užsakymas sėkmingai patvirtintas'
-            ]);
-        else
-            return response()->json([
-                'success' => false,
-                'message' => 'Nepavyko patvirtinti užsakymo'
-            ], 500);
-    }
+
+
+
+    // public function update1(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'approved' => 'required|max:255',
+    //     ]);
+    //     $Order = Order::find($id);
+    //     $Order->update(['approved', 1]);
+    //     return $Order;
+    // }
+
+    // public function approve($id, Request $request)
+    // {
+
+    //     $order = Order::where('id', $id);
+
+    //     if ($order->update(['approved', 1]))
+    //         return response()->json([
+    //             'success' => true,
+    //             'message' => 'Užsakymas sėkmingai patvirtintas'
+    //         ]);
+    //     else
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Nepavyko patvirtinti užsakymo'
+    //         ], 500);
+    // }
+
+
+    // public function update(Request $request, $id)
+    // {
+    //     $Order = Order::where('id', $id);
+
+    //     if ($Order->update(['approved'=> $Order->approved === 0 ? 1 : 0]))
+    //         return response()->json([
+    //             'success' => true,
+    //             'message' => 'Užsakymas sėkmingai patvirtintas'
+    //         ]);
+    //     else
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Nepavyko patvirtinti užsakymo'
+    //         ], 500);
+    // }
 
 }
 

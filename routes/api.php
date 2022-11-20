@@ -32,7 +32,7 @@ Route::post('/register', [ApiAuthController::class, 'register']);
 Route::post('/login', [ApiAuthController::class, 'login']);
 Route::post('/logout', [ApiAuthController::class, 'logout'])->middleware('auth:sanctum');
 
-Route::resource('/order', OrderController::class, ['only' => ['index', 'show']]);
-Route::resource('/order', OrderController::class, ['except' => ['index', 'show']])->middleware('auth:sanctum');
 Route::post('/hotel/addorder', [HotelController::class, 'addOrder'])->middleware('auth:sanctum');
+Route::resource('/order', OrderController::class, ['only' => ['index', 'show']]);
+Route::resource('/order', OrderController::class, ['except' => ['index', 'show']]);#->middleware('auth:sanctum');
 

@@ -21,7 +21,6 @@ class HotelResource extends JsonResource
             'image'=> $this->image,
             'travel_time' => $this->travel_time,
             'country_id'=> $this->country_id,
-            'order' => $this->orders,
             'country_name'=> ($this->country['name'] ?? "none"),
         ];
     }

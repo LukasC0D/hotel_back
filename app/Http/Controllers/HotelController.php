@@ -29,8 +29,8 @@ class HotelController extends Controller
 
     public function show($id, Request $request)
     {
-        if ($request->embed === "comments")
-            return Hotel::with('comments')->find($id);
+        // if ($request->embed === "comments")
+        //     return Hotel::with('comments')->find($id);
         return Hotel::find($id);
     }
 
@@ -54,6 +54,8 @@ class HotelController extends Controller
             ? response(["status" => "failure"], 404)
             : response(["status" => "success"], 200);
     }
+
+
     public function addOrder(Request $request)
     {
         try {
@@ -67,4 +69,55 @@ class HotelController extends Controller
         }
         return Order::create($request->all());
     }
+
+
+
+    // public function search($keyword)
+    // {
+    //     $hotels = Hotels::where('name', 'like', '%' . $keyword . '%');
+
+    //     if ($hotels->get())
+    //         return response()->json([
+    //             'success' => true,
+    //             'message' => $hotels->get()
+    //         ]);
+    //     else
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Nepavyko gauti viešbučių sąrašo'
+    //         ], 500);
+    // }
+
+    // public function sortByPrice()
+    // {
+    //     $hotels = Hotels::orderBy('price');
+
+    //     if ($hotels->get())
+    //         return response()->json([
+    //             'success' => true,
+    //             'message' => $hotels->get()
+    //         ]);
+    //     else
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Nepavyko gauti viešbučių sąrašo'
+    //         ], 500);
+    // }
+
+    // public function byCountry($id)
+    // {
+    //     $hotels = Hotels::where('country_id', $id);
+
+    //     if ($hotels->get())
+    //         return response()->json([
+    //             'success' => true,
+    //             'message' => $hotels->get()
+    //         ]);
+    //     else
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Nepavyko gauti viešbučių sąrašo'
+    //         ], 500);
+    // }
 }
+

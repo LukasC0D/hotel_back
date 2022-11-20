@@ -17,7 +17,6 @@ return new class extends Migration
             $table->tinyInteger('role')->default(1);
         });
     }
-
     /**
      * Reverse the migrations.
      *

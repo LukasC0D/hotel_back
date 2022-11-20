@@ -19,7 +19,7 @@ return new class extends Migration
             $table->float('price');
             $table->string('image');
             $table->string('travel_time');
-            $table->foreignId('country_id')->nullable()->constrained('countries')->onDelete('set null');
+            $table->foreignId('country_id')->nullable()->constrained('countries')->onDelete('cascade');
             $table->timestamps();
         });
     }
