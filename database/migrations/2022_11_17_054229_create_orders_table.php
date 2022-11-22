@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('approved')->default(0);
             $table->foreignId('hotel_id')->nullable()->constrained('hotels')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -34,5 +34,7 @@ Route::post('/logout', [ApiAuthController::class, 'logout'])->middleware('auth:s
 
 Route::post('/hotel/addorder', [HotelController::class, 'addOrder'])->middleware('auth:sanctum');
 Route::resource('/order', OrderController::class, ['only' => ['index', 'show']]);
-Route::resource('/order', OrderController::class, ['except' => ['index', 'show']]);#->middleware('auth:sanctum');
+Route::resource('/order', OrderController::class, ['except' => ['index', 'show']])->middleware('auth:sanctum');
+
+// Route::put('/order/{id}', [OrderController::class, 'approve']);#->middleware('auth:sanctum');
 

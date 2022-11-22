@@ -16,8 +16,8 @@ class Country extends Model
         'created_at',
         'updated_at',
         ];
-    public function hotel()
-    {
-        return $this->hasMany(Hotel::class);
-    }
+    // public function hotel()
+    // {
+    //     return $this->hasMany(Hotel::class);
+    // }
 }

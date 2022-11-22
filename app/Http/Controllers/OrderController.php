@@ -14,7 +14,7 @@ class OrderController extends Controller
     {
         // if ($request->search === "name")
         //     return Order::all();
-        return Order::all();
+        return Order::with('hotel')->with('user')->get();
     }
     public function show($id, Request $request)
     {
@@ -22,6 +22,7 @@ class OrderController extends Controller
         //     return Order::with('comments')->find($id);
         return Order::find($id);
     }
+
     // public function returnHotel(Request $request)
     // {
     //         return new HotelCollection(Hotel::all());
@@ -36,19 +37,38 @@ class OrderController extends Controller
     }
 
 
-    public function store(Request $request)
-    {
-        try {
-            $request->validate([
-                'name' => 'required|max:250',
-                'hotel_id' => 'required|max:250'
-            ]);
 
-        } catch (Throwable $e) {
-            return response("Order not added", 400);
-        }
-        return Order::create($request->all());
+    public function update($id, Request $request)
+    {
+
+        $order = Order::find($id);
+
+        if ($order->update(['approved' => $order->approved == 0 ? 1 : 0]))
+            return response()->json([
+                'success' => true,
+                'message' => 'Užsakymas sėkmingai patvirtintas'
+            ]);
+        else
+            return response()->json([
+                'success' => false,
+                'message' => 'Nepavyko patvirtinti užsakymo'
+            ], 500);
     }
+
+
+    // public function store(Request $request)
+    // {
+    //     try {
+    //         $request->validate([
+    //             'name' => 'required|max:250',
+    //             'hotel_id' => 'required|max:250'
+    //         ]);
+
+    //     } catch (Throwable $e) {
+    //         return response("Order not added", 400);
+    //     }
+    //     return Order::create($request->all());
+    // }
 
 
 
@@ -62,22 +82,7 @@ class OrderController extends Controller
     //     return $Order;
     // }
 
-    // public function approve($id, Request $request)
-    // {
 
-    //     $order = Order::where('id', $id);
-
-    //     if ($order->update(['approved', 1]))
-    //         return response()->json([
-    //             'success' => true,
-    //             'message' => 'Užsakymas sėkmingai patvirtintas'
-    //         ]);
-    //     else
-    //         return response()->json([
-    //             'success' => false,
-    //             'message' => 'Nepavyko patvirtinti užsakymo'
-    //         ], 500);
-    // }
 
 
     // public function update(Request $request, $id)
